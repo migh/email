@@ -6,24 +6,16 @@ class ClientEmail {
   }
 
   send(message, options) {
-    return new Promise((resolve, reject) => {
-      this.client.transmissions.send({
-        options: { sandbox: true },
-        content: {
-          from: options.from,
-          subject: options.subject,
-          html: message
-        },
-        recipients: [
-          {address: options.to}
-        ]
-      })
-        .then(data => {
-          resolve(data);
-        })
-        .catch(err => {
-          reject(err);
-        });
+    return this.client.transmissions.send({
+      content: {
+        from: options.from,
+        subject: options.subject,
+        reply_to: options.to,
+        html: message
+      },
+      recipients: [
+        {address: options.recipient}
+      ]
     });
   }
 }

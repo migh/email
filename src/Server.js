@@ -21,12 +21,13 @@ class Server {
     });
 
     app.post('/', (req, res) => {
-      // req.body is already a JSON ;)
+      // req.body is already JSON ;)
       const { to, subject, content } = req.body;
 
       const messageOptions = {
-        from: '<VALID SENDER EMAIL>',
-        to,
+        from: '<VALID SENDER MAIL>',// Email will be sent from this address
+        recipient: '<VALID RECIPIENT MAIL>',// Email will be sent to this address
+        to,// Used to fill the reply to field
         subject
       };
 
